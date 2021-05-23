@@ -1,8 +1,5 @@
-C:\Anaconda3\Lib\site-packages\PyQt5\uic 이동
+ui 파일 있는 곳에서 anaconda prompt 실행(python 실행가능한 명령창이면 됨)
 
-ui파일 옮기고 anaconda prompt 실행
+python -m PyQt5.uic.pyuic -x ui_file_name -o py_file_name 실행
 
-python -m PyQt5.uic.pyuic -x ui_file_name -o py_file_name
-실행
-
-변경확인
+해당 디렉토리에 변환된 파일 확인

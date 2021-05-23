@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>file</string>
+    </property>
+    <addaction name="actionopen"/>
+    <addaction name="actionselect"/>
+   </widget>
+   <widget class="QMenu" name="menutjdgh">
+    <property name="title">
+     <string>tjdgh</string>
+    </property>
+    <addaction name="actionwjddks"/>
+    <addaction name="actiontjdghwjddks"/>
+   </widget>
+   <widget class="QMenu" name="menuzz">
+    <property name="title">
+     <string>zz</string>
+    </property>
+    <addaction name="actionqq"/>
+    <addaction name="actionaa"/>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menutjdgh"/>
+   <addaction name="menuzz"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionopen">
+   <property name="text">
+    <string>open</string>
+   </property>
+  </action>
+  <action name="actionselect">
+   <property name="text">
+    <string>select</string>
+   </property>
+  </action>
+  <action name="actionwjddks">
+   <property name="text">
+    <string>wjddks</string>
+   </property>
+  </action>
+  <action name="actiontjdghwjddks">
+   <property name="text">
+    <string>tjdghwjddks</string>
+   </property>
+  </action>
+  <action name="actionqq">
+   <property name="text">
+    <string>qq</string>
+   </property>
+  </action>
+  <action name="actionaa">
+   <property name="text">
+    <string>aa</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -30,13 +30,16 @@ class Ui_MainWindow(object):
         self.treeWidget.setObjectName("treeWidget")
         self.treeWidget.setModel(self.model)
         self.treeWidget.setRootIndex(self.model.index(QDir.currentPath()))
-        #self.treeWidget.setRootIndex(self.model.index('C:\\Users\\heaven\\Desktop\\env')) # 다른 디렉토리 선택법
+        self.treeWidget.clicked.connect(self.click_event)
+        self.dirc = QDir.currentPath() + '/'
+        self.fname = ''
+        
         
         # image widget
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(self.winx/4 + 2, 2, self.winx*3/4 -2, self.winy - 50))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("ic.png"))
+        #self.label.setPixmap(QtGui.QPixmap("ic.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -54,6 +57,8 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.statusbar.showMessage(self.dirc)
+        
         
         # QAction
         self.actionopen = QtWidgets.QAction(MainWindow)
@@ -74,6 +79,15 @@ class Ui_MainWindow(object):
     def MenuAction(self):
         self.fname = QtWidgets.QFileDialog.getExistingDirectory(None, 'Open directory', './')
         self.treeWidget.setRootIndex(self.model.index(self.fname))
+        self.fname = self.fname + '/'
+        
+    def click_event(self, item):
+        data = self.model.itemData(item)
+        self.label.setPixmap(QtGui.QPixmap(self.fname + data[0]))
+        if self.fname == '':
+            self.statusbar.showMessage(self.dirc + data[0])
+        else:
+            self.statusbar.showMessage(self.fname + data[0])
         
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

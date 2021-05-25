@@ -5,20 +5,24 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-import os
+
+
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QDir
 
+# My Module
+import cv_func as cv
+
 
 class Ui_MainWindow(object):
     def __init__(self):
-        self.winx, self.winy = 1500, 900
+        self.winx, self.winy = 1500, 960
 
     
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(self.winx, self.winy)
+        MainWindow.setFixedSize(self.winx, self.winy)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         
@@ -26,20 +30,19 @@ class Ui_MainWindow(object):
         self.model = QtWidgets.QFileSystemModel(self.centralwidget)
         self.model.setRootPath(QDir.rootPath())
         self.treeWidget = QtWidgets.QTreeView(self.centralwidget)
-        self.treeWidget.setGeometry(QtCore.QRect(2, 2, self.winx/4, self.winy - 50))
+        self.treeWidget.setGeometry(QtCore.QRect(10, 10, 370, self.winy - 60))
         self.treeWidget.setObjectName("treeWidget")
         self.treeWidget.setModel(self.model)
         self.treeWidget.setRootIndex(self.model.index(QDir.currentPath()))
-        self.treeWidget.clicked.connect(self.click_event)
+        self.treeWidget.clicked.connect(self.image_event)
         self.dirc = QDir.currentPath() + '/'
         self.fname = ''
         
         
-        # image widget
+        # image widget  size : 1100x900
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(self.winx/4 + 2, 2, self.winx*3/4 -2, self.winy - 50))
+        self.label.setGeometry(QtCore.QRect(390, 10, self.winx - 400, self.winy - 60))
         self.label.setText("")
-        #self.label.setPixmap(QtGui.QPixmap("ic.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -81,9 +84,13 @@ class Ui_MainWindow(object):
         self.treeWidget.setRootIndex(self.model.index(self.fname))
         self.fname = self.fname + '/'
         
-    def click_event(self, item):
+    def image_event(self, item):
         data = self.model.itemData(item)
-        self.label.setPixmap(QtGui.QPixmap(self.fname + data[0]))
+        self.imed = cv.image_edit(self.fname + data[0])
+        img, h, w, c = self.imed.im_load() # high, width, channel
+        qimg = QtGui.QImage(img, w, h, w*c, QtGui.QImage.Format_RGB888)
+        pixmap = QtGui.QPixmap.fromImage(qimg)
+        self.label.setPixmap(pixmap)
         if self.fname == '':
             self.statusbar.showMessage(self.dirc + data[0])
         else:

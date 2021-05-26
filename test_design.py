@@ -43,7 +43,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(390, 10, self.winx - 400, self.winy - 60))
         self.label.setText("")
-        self.label.setScaledContents(True)
+        self.label.setScaledContents(False)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
         
@@ -86,7 +86,7 @@ class Ui_MainWindow(object):
         
     def image_event(self, item):
         data = self.model.itemData(item)
-        self.imed = cv.image_edit(self.fname + data[0])
+        self.imed = cv.image_edit(self.fname + data[0], self.winx - 400, self.winy - 60)
         img, h, w, c = self.imed.im_load() # high, width, channel
         qimg = QtGui.QImage(img, w, h, w*c, QtGui.QImage.Format_RGB888)
         pixmap = QtGui.QPixmap.fromImage(qimg)

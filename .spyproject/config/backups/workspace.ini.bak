@@ -8,5 +8,5 @@ recent_files = ['test_design.py', 'menutest.py', 'QMainWindow_test.py', 'QWidget
 
 [main]
 version = 0.2.0
-recent_files = ['test_design.py', 'cv_func.py', 'file_open_example.py', 'menutest.py', 'QMainWindow_test.py', 'QWidget_test.py']
+recent_files = ['test_design.py', 'cv_func.py', 'file_open_example.py', 'menutest.py', 'QMainWindow_test.py', 'QWidget_test.py', 'painter_example.py']
 
